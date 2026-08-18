@@ -33,8 +33,8 @@ class DashboardHeader extends LitElement {
   override render() {
     const label = this.routeId ? titleForRoute(this.routeId) : "";
     const rawAgentLabel = this.agentLabel.trim();
-    // Skip the agent crumb when it repeats the brand crumb ("OpenClaw › OpenClaw › …").
-    const agentLabel = rawAgentLabel.toLowerCase() === "openclaw" ? "" : rawAgentLabel;
+    // Skip the agent crumb when it repeats the brand crumb ("Sophia › Sophia › …").
+    const agentLabel = rawAgentLabel.toLowerCase() === "sophia" ? "" : rawAgentLabel;
 
     return html`
       <div class="dashboard-header">
@@ -46,10 +46,10 @@ class DashboardHeader extends LitElement {
                   href=${this.overviewHref}
                   @click=${this.handleOverviewClick}
                 >
-                  OpenClaw
+                  Sophia
                 </a>
               `
-            : html`<span class="dashboard-header__breadcrumb-link">OpenClaw</span>`}
+            : html`<span class="dashboard-header__breadcrumb-link">Sophia</span>`}
           ${agentLabel
             ? html`
                 <span class="dashboard-header__breadcrumb-segment">

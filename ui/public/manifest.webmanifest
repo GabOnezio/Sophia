@@ -1,7 +1,7 @@
 {
-  "name": "OpenClaw Control",
-  "short_name": "OpenClaw",
-  "description": "Multi-channel AI gateway control panel",
+  "name": "Sophia Control",
+  "short_name": "Sophia",
+  "description": "Sophia — multi-channel AI gateway control panel",
   "start_url": "./",
   "display": "standalone",
   "theme_color": "#0a0a0a",

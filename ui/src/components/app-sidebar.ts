@@ -299,7 +299,7 @@ class AppSidebar extends LitElement {
             alt=""
             aria-hidden="true"
           />
-          ${this.collapsed ? nothing : html`<span class="sidebar-brand__title">OpenClaw</span>`}
+          ${this.collapsed ? nothing : html`<span class="sidebar-brand__title">Sophia</span>`}
         </div>
         <div class="sidebar-brand__actions">
           ${this.renderSearch()}

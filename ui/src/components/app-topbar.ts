@@ -54,14 +54,14 @@ class AppTopbar extends LitElement {
             </button>
           </openclaw-tooltip>
           <div class="topnav-shell__content">
-            <div class="topbar-brand" aria-label="OpenClaw">
+            <div class="topbar-brand" aria-label="Sophia">
               <img
                 class="topbar-brand__logo"
                 src=${controlUiPublicAssetPath("apple-touch-icon.png", this.basePath)}
                 alt=""
                 aria-hidden="true"
               />
-              <span class="topbar-brand__title">OpenClaw</span>
+              <span class="topbar-brand__title">Sophia</span>
             </div>
             <dashboard-header
               .routeId=${this.routeId}
