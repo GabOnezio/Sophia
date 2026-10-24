@@ -476,6 +476,10 @@ export const ru: TranslationMap = {
     settings: "Настройки",
     expand: "Развернуть боковую панель",
     collapse: "Свернуть боковую панель",
+    collapseFurther: "Свернуть боковую панель полностью",
+    expandFromHidden: "Развернуть боковую панель",
+    hideTopbar: "Скрыть верхнюю панель",
+    showTopbar: "Показать верхнюю панель",
     resize: "Изменить размер боковой панели",
     more: "Ещё",
     customize: "Настроить боковую панель",
@@ -526,6 +530,8 @@ export const ru: TranslationMap = {
     logs: "Журналы",
     dreams: "Сновидения",
     plugin: "Плагин",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Рабочие пространства, инструменты, идентификаторы.",
@@ -555,6 +561,8 @@ export const ru: TranslationMap = {
     logs: "Живые журналы шлюза.",
     dreams: "Сновидения памяти, консолидация и рефлексия.",
     plugin: "Панель, предоставленная плагином.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Активно",

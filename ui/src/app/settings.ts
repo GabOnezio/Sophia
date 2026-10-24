@@ -111,7 +111,9 @@ export type UiSettings = {
   splitRatio: number; // Sidebar split ratio (0.4 to 0.7, default 0.6)
   chatSplitLayout?: ChatSplitLayout;
   navCollapsed: boolean; // Collapsible sidebar state
+  navHidden: boolean; // Sidebar fully hidden (further than the collapsed rail)
   navWidth: number; // Sidebar width when expanded (240–400px)
+  topbarHidden: boolean; // Topbar fully hidden
   sidebarPinnedRoutes: SidebarNavRoute[]; // Nav routes shown above the "More" section
   sidebarMoreExpanded: boolean; // Whether the sidebar "More" section is expanded
   borderRadius: number; // Corner roundness (0–100, default 50)
@@ -523,7 +525,7 @@ export function loadSettings(): UiSettings {
     token: loadSessionToken(defaultUrl),
     sessionKey: "main",
     lastActiveSessionKey: "main",
-    theme: "claw",
+    theme: "sophia",
     themeMode: "system",
     chatShowThinking: true,
     chatShowToolCalls: true,
@@ -532,7 +534,9 @@ export function loadSettings(): UiSettings {
     chatSendShortcut: "enter",
     splitRatio: 0.6,
     navCollapsed: false,
+    navHidden: false,
     navWidth: 220,
+    topbarHidden: false,
     sidebarPinnedRoutes: [...DEFAULT_SIDEBAR_PINNED_ROUTES],
     sidebarMoreExpanded: false,
     borderRadius: 50,
@@ -598,10 +602,13 @@ export function loadSettings(): UiSettings {
       chatSplitLayout: normalizeChatSplitLayout(parsed.chatSplitLayout),
       navCollapsed:
         typeof parsed.navCollapsed === "boolean" ? parsed.navCollapsed : defaults.navCollapsed,
+      navHidden: typeof parsed.navHidden === "boolean" ? parsed.navHidden : defaults.navHidden,
       navWidth:
         typeof parsed.navWidth === "number" && parsed.navWidth >= 200 && parsed.navWidth <= 400
           ? parsed.navWidth
           : defaults.navWidth,
+      topbarHidden:
+        typeof parsed.topbarHidden === "boolean" ? parsed.topbarHidden : defaults.topbarHidden,
       sidebarPinnedRoutes:
         normalizeSidebarPinnedRoutes(parsed.sidebarPinnedRoutes) ?? defaults.sidebarPinnedRoutes,
       sidebarMoreExpanded:
@@ -696,7 +703,9 @@ function persistSettings(next: UiSettings, options: { selectGateway?: boolean } 
     splitRatio: next.splitRatio,
     ...(next.chatSplitLayout ? { chatSplitLayout: next.chatSplitLayout } : {}),
     navCollapsed: next.navCollapsed,
+    navHidden: next.navHidden,
     navWidth: next.navWidth,
+    topbarHidden: next.topbarHidden,
     sidebarPinnedRoutes: next.sidebarPinnedRoutes,
     sidebarMoreExpanded: next.sidebarMoreExpanded,
     borderRadius: next.borderRadius,

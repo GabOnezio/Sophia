@@ -12,6 +12,7 @@ import {
   validateTalkClientSteerParams,
   validateTalkClientToolCallParams,
 } from "../../../packages/gateway-protocol/src/index.js";
+import { getLogger } from "../../logging/logger.js";
 import {
   REALTIME_VOICE_AGENT_CONSULT_TOOL,
   REALTIME_VOICE_AGENT_CONSULT_TOOL_NAME,
@@ -127,6 +128,17 @@ export const talkClientHandlers: GatewayRequestHandlers = {
         requested: typedParams,
         defaults: realtimeConfig,
       });
+      getLogger().info(
+        {
+          requestedProvider: typedParams.provider ?? null,
+          configPrimaryProvider: realtimeConfig.provider ?? null,
+          configModel: realtimeConfig.model ?? null,
+          resolvedProvider: resolution.provider.id,
+          resolvedModel: launchOptions.model ?? null,
+          transport,
+        },
+        "[talk.client.create] resolved realtime voice provider",
+      );
       if (resolution.provider.createBrowserSession && transport !== "gateway-relay") {
         const session = await resolution.provider.createBrowserSession({
           cfg: runtimeConfig,

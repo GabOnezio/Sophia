@@ -477,6 +477,10 @@ export const it: TranslationMap = {
     settings: "Impostazioni",
     expand: "Espandi barra laterale",
     collapse: "Comprimi barra laterale",
+    collapseFurther: "Comprimi ulteriormente la barra laterale",
+    expandFromHidden: "Espandi barra laterale",
+    hideTopbar: "Nascondi la barra superiore",
+    showTopbar: "Mostra la barra superiore",
     resize: "Ridimensiona barra laterale",
     more: "Altro",
     customize: "Personalizza barra laterale",
@@ -527,6 +531,8 @@ export const it: TranslationMap = {
     logs: "Log",
     dreams: "Sogni",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Spazi di lavoro, strumenti, identità.",
@@ -555,6 +561,8 @@ export const it: TranslationMap = {
     logs: "Log gateway live.",
     dreams: "Sogni della memoria, consolidamento e riflessione.",
     plugin: "Pannello fornito dal plugin.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Attive",

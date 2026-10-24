@@ -475,6 +475,10 @@ export const nl: TranslationMap = {
     settings: "Instellingen",
     expand: "Zijbalk uitvouwen",
     collapse: "Zijbalk samenvouwen",
+    collapseFurther: "Zijbalk verder samenvouwen",
+    expandFromHidden: "Zijbalk uitvouwen",
+    hideTopbar: "Bovenbalk verbergen",
+    showTopbar: "Bovenbalk tonen",
     resize: "Zijbalkgrootte aanpassen",
     more: "Meer",
     customize: "Zijbalk aanpassen",
@@ -525,6 +529,8 @@ export const nl: TranslationMap = {
     logs: "Logs",
     dreams: "Dromen",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Werkruimten, tools, identiteiten.",
@@ -553,6 +559,8 @@ export const nl: TranslationMap = {
     logs: "Live Gateway-logs.",
     dreams: "Geheugendromen, consolidatie en reflectie.",
     plugin: "Door een plugin geleverd paneel.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Actief",

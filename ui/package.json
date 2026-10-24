@@ -22,10 +22,12 @@
     "lit": "3.3.3",
     "markdown-it": "14.3.0",
     "markdown-it-task-lists": "2.1.1",
-    "marked": "18.0.5"
+    "marked": "18.0.5",
+    "three": "0.180.0"
   },
   "devDependencies": {
     "@types/markdown-it": "14.1.2",
+    "@types/three": "0.180.0",
     "@vitest/browser-playwright": "4.1.9",
     "jsdom": "29.1.1",
     "playwright": "1.61.1",

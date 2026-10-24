@@ -78,6 +78,8 @@ describe("navigationIconForRoute", () => {
       "ai-agents": "brain",
       debug: "bug",
       logs: "scrollText",
+      alive: "orbit",
+      "live-config": "key",
     });
   });
 
@@ -118,6 +120,8 @@ describe("titleForRoute", () => {
       "ai-agents": "AI & Agents",
       debug: "Debug",
       logs: "Logs",
+      alive: "Alive",
+      "live-config": "Live Configuration",
     });
   });
 });
@@ -152,6 +156,8 @@ describe("subtitleForRoute", () => {
       "ai-agents": "Agents, models, skills, tools, memory, session.",
       debug: "Snapshots, events, RPC.",
       logs: "Live gateway logs.",
+      alive: "Talk to her live — voice, presence, and a living sphere.",
+      "live-config": "API keys, default voice, and the AI's persona.",
     });
   });
 });
@@ -346,6 +352,7 @@ describe("SIDEBAR_NAV_ROUTES", () => {
       "ai-agents",
       "debug",
       "logs",
+      "live-config",
     ]);
   });
 });

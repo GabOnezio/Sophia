@@ -82,6 +82,18 @@ export type TalkRealtimeConfig = {
   brain?: "agent-consult" | "direct-tools" | "none";
   /** How Gateway relay handles final user transcripts when the provider skips a consult. */
   consultRouting?: "provider-direct" | "force-agent-consult";
+  /** Control UI Alive page: distance-based falloff for the 3D scene's spatial
+   * audio (Web Audio PannerNode, "inverse" distance model). Client-only —
+   * the gateway never reads this, it's just persisted here for Configuração
+   * Viva to edit and the Alive page to read back. */
+  spatialAudio?: {
+    /** Distance (world units) at which volume starts falling off. Default: 2. */
+    refDistance?: number;
+    /** Distance (world units) beyond which the falloff calculation stops increasing. Default: 16. */
+    maxDistance?: number;
+    /** Falloff steepness past refDistance — lower is more gradual. Default: 1.4. */
+    rolloffFactor?: number;
+  };
 };
 
 export type ResolvedTalkConfig = {

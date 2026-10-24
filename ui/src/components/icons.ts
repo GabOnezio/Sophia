@@ -379,6 +379,16 @@ export const icons = {
       <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   `,
+  chevronLeft: html`
+    <svg viewBox="0 0 24 24">
+      <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  `,
+  chevronUp: html`
+    <svg viewBox="0 0 24 24">
+      <path d="M6 15l6-6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  `,
   externalLink: html`
     <svg viewBox="0 0 24 24">
       <path
@@ -592,6 +602,23 @@ export const icons = {
       <polyline points="20 10 14 10 14 4" />
       <line x1="14" x2="21" y1="10" y2="3" />
       <line x1="3" x2="10" y1="21" y2="14" />
+    </svg>
+  `,
+  orbit: html`
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3" />
+      <circle cx="19" cy="5" r="2" />
+      <circle cx="5" cy="19" r="2" />
+      <path d="M10.4 21.9a10 10 0 0 0 9.941-15.416" />
+      <path d="M13.5 2.1a10 10 0 0 0-9.841 15.416" />
+    </svg>
+  `,
+  key: html`
+    <svg viewBox="0 0 24 24">
+      <circle cx="7.5" cy="15.5" r="5.5" />
+      <path d="M11 11.5 21 1.5" />
+      <path d="M17 5.5 21 1.5" />
+      <path d="M20 2.5 22 4.5" />
     </svg>
   `,
 } as const;

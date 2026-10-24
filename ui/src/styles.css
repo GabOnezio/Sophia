@@ -11,6 +11,8 @@
 @import "./styles/usage.css";
 @import "./styles/logbook.css";
 @import "./styles/dreams.css";
+@import "./styles/alive.css";
+@import "./styles/live-config.css";
 @import "./styles/workboard.css";
 @import "./styles/skill-workshop.css";
 @import "@create-markdown/preview/themes/system.css";

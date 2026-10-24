@@ -470,6 +470,10 @@ export const th: TranslationMap = {
     settings: "การตั้งค่า",
     expand: "ขยายแถบด้านข้าง",
     collapse: "ย่อแถบด้านข้าง",
+    collapseFurther: "ย่อแถบด้านข้างเพิ่มเติม",
+    expandFromHidden: "ขยายแถบด้านข้าง",
+    hideTopbar: "ซ่อนแถบด้านบน",
+    showTopbar: "แสดงแถบด้านบน",
     resize: "ปรับขนาดแถบด้านข้าง",
     more: "เพิ่มเติม",
     customize: "ปรับแต่งแถบด้านข้าง",
@@ -520,6 +524,8 @@ export const th: TranslationMap = {
     logs: "บันทึก",
     dreams: "การฝัน",
     plugin: "ปลั๊กอิน",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "เวิร์กสเปซ เครื่องมือ และข้อมูลประจำตัว",
@@ -548,6 +554,8 @@ export const th: TranslationMap = {
     logs: "บันทึกเกตเวย์แบบสด",
     dreams: "การฝันของหน่วยความจำ การรวมข้อมูล และการสะท้อนคิด",
     plugin: "แผงที่ปลั๊กอินจัดเตรียมไว้",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "กำลังใช้งาน",

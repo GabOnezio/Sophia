@@ -1,0 +1,261 @@
+/* ===========================================
+   Settings — "Live Configuration" / "Configuração Viva"
+   =========================================== */
+
+.live-config {
+  display: grid;
+  gap: 18px;
+  padding: 4px;
+}
+
+.live-config__section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.live-config__heading {
+  margin: 0;
+  font-size: var(--control-ui-text-lg);
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.live-config__hint {
+  margin: -8px 0 0;
+  color: var(--muted);
+  font-size: var(--control-ui-text-sm);
+}
+
+.live-config__error {
+  color: var(--destructive);
+  font-size: var(--control-ui-text-sm);
+}
+
+.live-config__error--banner {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--destructive);
+  background: color-mix(in oklab, var(--destructive) 10%, transparent);
+}
+
+.live-config__checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--control-ui-text-sm);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.live-config__checkbox-row input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.live-config__roster {
+  display: grid;
+  gap: 8px;
+}
+
+.live-config__roster-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--control-ui-text-sm);
+}
+
+.live-config__roster-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.live-config__roster-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--control-ui-text-sm);
+  color: var(--text);
+  min-width: 0;
+}
+
+.live-config__roster-model {
+  color: var(--muted);
+  font-size: var(--control-ui-text-xs);
+  font-family: var(--mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.live-config__roster-remove {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.live-config__roster-remove:hover {
+  color: var(--destructive);
+  background: var(--destructive-subtle, transparent);
+}
+
+.live-config__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.live-config__star {
+  border: none;
+  background: transparent;
+  color: var(--border-strong);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px;
+}
+
+.live-config__star:disabled {
+  cursor: not-allowed;
+}
+
+.live-config__star--filled {
+  color: var(--accent);
+}
+
+.live-config__add-btn {
+  justify-self: start;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px dashed var(--border-strong);
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: var(--control-ui-text-sm);
+  cursor: pointer;
+}
+
+.live-config__add-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.live-config__add-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.live-config__add-select,
+.live-config__add-input {
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--input);
+  color: var(--text);
+  font-family: inherit;
+  font-size: var(--control-ui-text-sm);
+}
+
+.live-config__add-select:focus-visible,
+.live-config__add-input:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-glow);
+}
+
+.live-config__add-input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.live-config__add-cancel {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: var(--control-ui-text-sm);
+  padding: 6px 8px;
+}
+
+.live-config__add-cancel:hover {
+  color: var(--text);
+}
+
+.live-config__persona-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.live-config__spatial-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.live-config__spatial-field {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.live-config__hint--tight {
+  margin: 0;
+  font-size: var(--control-ui-text-xs);
+}
+
+.live-config__persona-field {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.live-config__picker-label {
+  font-size: var(--control-ui-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.live-config__textarea {
+  resize: vertical;
+  min-height: 120px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--input);
+  color: var(--text);
+  font-family: inherit;
+  font-size: var(--control-ui-text-sm);
+  line-height: 1.5;
+}
+
+.live-config__textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-glow);
+}
+
+@media (max-width: 720px) {
+  .live-config__roster-row {
+    grid-template-columns: 1fr;
+  }
+}

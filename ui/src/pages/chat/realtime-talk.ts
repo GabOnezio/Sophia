@@ -165,20 +165,20 @@ export class RealtimeTalkSession {
       if (transport && transport !== "gateway-relay") {
         throw error;
       }
-      try {
-        return await this.client.request<RealtimeTalkSessionResult>(
-          "talk.session.create",
-          compactLaunchParams({
-            sessionKey: this.sessionKey,
-            ...this.options,
-            mode: "realtime",
-            transport: transport ?? "gateway-relay",
-            brain: "agent-consult",
-          }),
-        );
-      } catch {
-        throw error;
-      }
+      // Gateway relay is the authoritative fallback path once selected above —
+      // surface its own failure (e.g. an unconfigured/misnamed provider) rather
+      // than the generic "client-owned" error that triggered the fallback,
+      // which would otherwise mask the real cause from the user.
+      return await this.client.request<RealtimeTalkSessionResult>(
+        "talk.session.create",
+        compactLaunchParams({
+          sessionKey: this.sessionKey,
+          ...this.options,
+          mode: "realtime",
+          transport: transport ?? "gateway-relay",
+          brain: "agent-consult",
+        }),
+      );
     }
   }
 
@@ -187,5 +187,13 @@ export class RealtimeTalkSession {
     this.callbacks.onStatus?.("idle");
     this.transport?.stop();
     this.transport = null;
+  }
+
+  /** Gates the outgoing mic track without ending the session — see the
+   * Alive page's alive-realtime.ts for why (movement-key click noise
+   * shouldn't be able to trigger a false barge-in). No-op before the
+   * transport exists or if the active transport doesn't implement it. */
+  setMicMuted(muted: boolean): void {
+    this.transport?.setMicMuted?.(muted);
   }
 }

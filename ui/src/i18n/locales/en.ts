@@ -470,6 +470,10 @@ export const en: TranslationMap = {
     settings: "Settings",
     expand: "Expand sidebar",
     collapse: "Collapse sidebar",
+    collapseFurther: "Collapse sidebar further",
+    expandFromHidden: "Expand sidebar",
+    hideTopbar: "Hide top bar",
+    showTopbar: "Show top bar",
     resize: "Resize sidebar",
     more: "More",
     customize: "Edit pinned items",
@@ -520,6 +524,8 @@ export const en: TranslationMap = {
     logs: "Logs",
     dreams: "Dreaming",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Workspaces, tools, identities.",
@@ -548,6 +554,8 @@ export const en: TranslationMap = {
     logs: "Live gateway logs.",
     dreams: "Memory dreaming, consolidation, and reflection.",
     plugin: "Plugin-provided panel.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Active",

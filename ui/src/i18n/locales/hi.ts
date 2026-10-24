@@ -472,6 +472,10 @@ export const hi: TranslationMap = {
     settings: "सेटिंग्स",
     expand: "साइडबार फैलाएँ",
     collapse: "साइडबार समेटें",
+    collapseFurther: "साइडबार को और समेटें",
+    expandFromHidden: "साइडबार फैलाएँ",
+    hideTopbar: "शीर्ष बार छिपाएँ",
+    showTopbar: "शीर्ष बार दिखाएँ",
     resize: "साइडबार का आकार बदलें",
     more: "अधिक",
     customize: "साइडबार कस्टमाइज़ करें",
@@ -522,6 +526,8 @@ export const hi: TranslationMap = {
     logs: "लॉग्स",
     dreams: "ड्रीमिंग",
     plugin: "प्लगइन",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "वर्कस्पेस, टूल्स, पहचान।",
@@ -550,6 +556,8 @@ export const hi: TranslationMap = {
     logs: "लाइव gateway लॉग।",
     dreams: "मेमोरी ड्रीमिंग, कंसॉलिडेशन, और रिफ्लेक्शन।",
     plugin: "प्लगइन द्वारा उपलब्ध कराया गया पैनल।",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "सक्रिय",

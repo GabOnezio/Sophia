@@ -469,6 +469,10 @@ export const zh_TW: TranslationMap = {
     settings: "設置",
     expand: "展開側邊欄",
     collapse: "折疊側邊欄",
+    collapseFurther: "進一步折疊側邊欄",
+    expandFromHidden: "展開側邊欄",
+    hideTopbar: "隱藏頂部欄",
+    showTopbar: "顯示頂部欄",
     resize: "調整側邊欄大小",
     more: "更多",
     customize: "自訂側邊欄",
@@ -519,6 +523,8 @@ export const zh_TW: TranslationMap = {
     logs: "日誌",
     dreams: "夢境",
     plugin: "外掛程式",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "工作區、工具、身份。",
@@ -547,6 +553,8 @@ export const zh_TW: TranslationMap = {
     logs: "實時網關日誌。",
     dreams: "睡眠期間的記憶整合。",
     plugin: "外掛程式提供的面板。",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "進行中",

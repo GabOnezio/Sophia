@@ -471,6 +471,10 @@ export const ko: TranslationMap = {
     settings: "설정",
     expand: "사이드바 펼치기",
     collapse: "사이드바 접기",
+    collapseFurther: "사이드바 더 접기",
+    expandFromHidden: "사이드바 펼치기",
+    hideTopbar: "상단 바 숨기기",
+    showTopbar: "상단 바 표시",
     resize: "사이드바 크기 조절",
     more: "더 보기",
     customize: "사이드바 사용자 지정",
@@ -521,6 +525,8 @@ export const ko: TranslationMap = {
     logs: "로그",
     dreams: "드리밍",
     plugin: "플러그인",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "워크스페이스, 도구, 정체성.",
@@ -549,6 +555,8 @@ export const ko: TranslationMap = {
     logs: "실시간 Gateway 로그.",
     dreams: "수면 중 메모리 통합.",
     plugin: "플러그인이 제공하는 패널입니다.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "활성",

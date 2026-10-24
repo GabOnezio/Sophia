@@ -471,6 +471,10 @@ export const ar: TranslationMap = {
     settings: "الإعدادات",
     expand: "توسيع الشريط الجانبي",
     collapse: "طي الشريط الجانبي",
+    collapseFurther: "طي الشريط الجانبي أكثر",
+    expandFromHidden: "توسيع الشريط الجانبي",
+    hideTopbar: "إخفاء الشريط العلوي",
+    showTopbar: "إظهار الشريط العلوي",
     resize: "تغيير حجم الشريط الجانبي",
     more: "المزيد",
     customize: "تخصيص الشريط الجانبي",
@@ -521,6 +525,8 @@ export const ar: TranslationMap = {
     logs: "السجلات",
     dreams: "الحلم",
     plugin: "المكوّن الإضافي",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "مساحات العمل، والأدوات، والهويات.",
@@ -549,6 +555,8 @@ export const ar: TranslationMap = {
     logs: "سجلات Gateway المباشرة.",
     dreams: "حلم الذاكرة، والدمج، والتأمل.",
     plugin: "لوحة مقدمة من المكوّن الإضافي.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "نشطة",

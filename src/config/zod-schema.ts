@@ -324,6 +324,20 @@ const TalkRealtimeSchema = z
     reasoningEffort: z.string().min(1).optional(),
     brain: z.enum(["agent-consult", "direct-tools", "none"]).optional(),
     consultRouting: z.enum(["provider-direct", "force-agent-consult"]).optional(),
+    spatialAudio: z
+      .object({
+        /** Distance (world units) at which volume starts falling off. Larger = voice stays full
+         * volume over a wider radius. Control UI's Alive page default: 2. */
+        refDistance: z.number().positive().optional(),
+        /** Distance (world units) beyond which the falloff calculation stops increasing.
+         * Control UI's Alive page default: 16. */
+        maxDistance: z.number().positive().optional(),
+        /** How aggressively volume falls off past refDistance — lower is more gradual, higher
+         * drops off faster. Control UI's Alive page default: 1.4. */
+        rolloffFactor: z.number().nonnegative().optional(),
+      })
+      .strict()
+      .optional(),
   })
   .strict()
   .superRefine((realtime, ctx) => {

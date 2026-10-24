@@ -473,6 +473,10 @@ export const id: TranslationMap = {
     settings: "Pengaturan",
     expand: "Perluas bilah samping",
     collapse: "Ciutkan bilah samping",
+    collapseFurther: "Ciutkan bilah samping lebih lanjut",
+    expandFromHidden: "Perluas bilah samping",
+    hideTopbar: "Sembunyikan bilah atas",
+    showTopbar: "Tampilkan bilah atas",
     resize: "Ubah ukuran bilah samping",
     more: "Lainnya",
     customize: "Sesuaikan bilah samping",
@@ -523,6 +527,8 @@ export const id: TranslationMap = {
     logs: "Log",
     dreams: "Mimpi",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Ruang kerja, alat, identitas.",
@@ -551,6 +557,8 @@ export const id: TranslationMap = {
     logs: "Log Gateway langsung.",
     dreams: "Konsolidasi memori saat tidur.",
     plugin: "Panel yang disediakan plugin.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Aktif",

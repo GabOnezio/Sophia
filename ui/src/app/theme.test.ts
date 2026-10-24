@@ -6,6 +6,8 @@ describe("resolveTheme", () => {
   it("resolves named theme families when mode is provided", () => {
     expect(resolveTheme("knot", "dark")).toBe("openknot");
     expect(resolveTheme("dash", "light")).toBe("dash-light");
+    expect(resolveTheme("sophia", "dark")).toBe("sophia");
+    expect(resolveTheme("sophia", "light")).toBe("sophia-light");
   });
 
   it("uses system preference when mode is system", () => {
@@ -24,6 +26,13 @@ describe("parseThemeSelection", () => {
     expect(parseThemeSelection("fieldmanual", undefined)).toEqual({
       theme: "dash",
       mode: "dark",
+    });
+  });
+
+  it("defaults to sophia for a fresh install with no persisted or legacy theme", () => {
+    expect(parseThemeSelection(undefined, undefined)).toEqual({
+      theme: "sophia",
+      mode: "system",
     });
   });
 });

@@ -473,6 +473,10 @@ export const pl: TranslationMap = {
     settings: "Ustawienia",
     expand: "Rozwiń pasek boczny",
     collapse: "Zwiń pasek boczny",
+    collapseFurther: "Zwiń pasek boczny jeszcze bardziej",
+    expandFromHidden: "Rozwiń pasek boczny",
+    hideTopbar: "Ukryj górny pasek",
+    showTopbar: "Pokaż górny pasek",
     resize: "Zmień rozmiar paska bocznego",
     more: "Więcej",
     customize: "Dostosuj pasek boczny",
@@ -523,6 +527,8 @@ export const pl: TranslationMap = {
     logs: "Logi",
     dreams: "Sny",
     plugin: "Wtyczka",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Obszary robocze, narzędzia, tożsamości.",
@@ -551,6 +557,8 @@ export const pl: TranslationMap = {
     logs: "Logi Gateway na żywo.",
     dreams: "Konsolidacja pamięci podczas snu.",
     plugin: "Panel udostępniany przez wtyczkę.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Aktywne",

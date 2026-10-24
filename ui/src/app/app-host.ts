@@ -11,6 +11,7 @@ import "../components/exec-approval.ts";
 import "../components/gateway-url-confirmation.ts";
 import "../components/github-link-hovercard.ts";
 import "../components/login-gate.ts";
+import "../components/particle-field.ts";
 import "../components/terminal/terminal-panel.ts";
 import "../components/tooltip.ts";
 import "../components/update-banner.ts";
@@ -21,6 +22,7 @@ import {
   type CommandPalette,
   type CommandPaletteTargetDetail,
 } from "../components/command-palette.ts";
+import { icons } from "../components/icons.ts";
 import type { ThemeModeChangeDetail } from "../components/theme-mode-toggle.ts";
 import { t } from "../i18n/index.ts";
 import { copyToClipboard } from "../lib/clipboard.ts";
@@ -372,8 +374,10 @@ class OpenClawShell extends LitElement {
   private context?: ApplicationContext<RouteId>;
 
   @state() private navCollapsed = false;
+  @state() private navHidden = false;
   @state() private sidebarPinnedRoutes: readonly SidebarNavRoute[] = [];
   @state() private sidebarMoreExpanded = false;
+  @state() private topbarHidden = false;
   @state() private navDrawerOpen = false;
   @state() private gatewayConnected = false;
   @state() private gatewayLastError: string | null = null;
@@ -555,7 +559,26 @@ class OpenClawShell extends LitElement {
     }
     context.navigation.update({
       navCollapsed: !this.navCollapsed,
+      // Expanding all the way back out always restores the full sidebar,
+      // even if it had been fully hidden from the collapsed rail state.
+      ...(this.navCollapsed ? { navHidden: false } : {}),
     });
+  }
+
+  private toggleNavHidden() {
+    const context = this.context;
+    if (!context || this.onboarding || !this.navCollapsed) {
+      return;
+    }
+    context.navigation.update({ navHidden: !this.navHidden });
+  }
+
+  private toggleTopbarHidden() {
+    const context = this.context;
+    if (!context || this.onboarding) {
+      return;
+    }
+    context.navigation.update({ topbarHidden: !this.topbarHidden });
   }
 
   private closeNavDrawer(options: { restoreFocus?: boolean } = {}) {
@@ -727,8 +750,10 @@ class OpenClawShell extends LitElement {
     snapshot: ApplicationRuntime["context"]["navigation"]["snapshot"],
   ) => {
     this.navCollapsed = snapshot.navCollapsed;
+    this.navHidden = snapshot.navHidden;
     this.sidebarPinnedRoutes = snapshot.sidebarPinnedRoutes;
     this.sidebarMoreExpanded = snapshot.sidebarMoreExpanded;
+    this.topbarHidden = snapshot.topbarHidden;
   };
 
   override render() {
@@ -747,6 +772,8 @@ class OpenClawShell extends LitElement {
     // Drawer navigation always opens expanded; the desktop collapse preference
     // stays persisted for when the viewport returns to the desktop layout.
     const navCollapsed = this.navCollapsed && !navDrawerOpen;
+    const navHidden = this.navHidden && navCollapsed;
+    const topbarHidden = this.topbarHidden && !this.onboarding;
     return html`
       <openclaw-command-palette
         .onNavigate=${(routeId: RouteId) => this.navigate(routeId)}
@@ -759,12 +786,15 @@ class OpenClawShell extends LitElement {
       <div
         class="shell ${activeRoute === "chat" ? "shell--chat" : ""} ${navCollapsed
           ? "shell--nav-collapsed"
+          : ""} ${navHidden ? "shell--nav-hidden" : ""} ${topbarHidden
+          ? "shell--topbar-hidden"
           : ""} ${navDrawerOpen ? "shell--nav-drawer-open" : ""} ${this.onboarding
           ? "shell--onboarding"
           : ""}"
         @keydown=${this.handleShellKeydown}
         @theme-change=${this.handleThemeChange}
       >
+        <openclaw-particle-field></openclaw-particle-field>
         <button
           type="button"
           class="shell-nav-backdrop"
@@ -813,6 +843,38 @@ class OpenClawShell extends LitElement {
               isRouteId(routeId) ? context.preload(routeId) : Promise.resolve()}
           ></openclaw-app-sidebar>
         </div>
+        ${navCollapsed && !navDrawerOpen
+          ? html`
+              <openclaw-tooltip
+                .content=${navHidden ? t("nav.expandFromHidden") : t("nav.collapseFurther")}
+              >
+                <button
+                  type="button"
+                  class="shell-nav-handle"
+                  @click=${() => this.toggleNavHidden()}
+                  aria-label=${navHidden ? t("nav.expandFromHidden") : t("nav.collapseFurther")}
+                  aria-expanded=${String(!navHidden)}
+                >
+                  ${navHidden ? icons.chevronRight : icons.chevronLeft}
+                </button>
+              </openclaw-tooltip>
+            `
+          : nothing}
+        ${!this.onboarding
+          ? html`
+              <openclaw-tooltip .content=${topbarHidden ? t("nav.showTopbar") : t("nav.hideTopbar")}>
+                <button
+                  type="button"
+                  class="shell-topbar-handle"
+                  @click=${() => this.toggleTopbarHidden()}
+                  aria-label=${topbarHidden ? t("nav.showTopbar") : t("nav.hideTopbar")}
+                  aria-expanded=${String(!topbarHidden)}
+                >
+                  ${topbarHidden ? icons.chevronDown : icons.chevronUp}
+                </button>
+              </openclaw-tooltip>
+            `
+          : nothing}
         <main
           class="content ${activeRoute === "chat" ? "content--chat" : ""} ${activeRoute ===
           "workboard"

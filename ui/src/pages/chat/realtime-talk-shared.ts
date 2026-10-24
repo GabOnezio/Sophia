@@ -10,14 +10,30 @@ import {
 import type { RealtimeVoiceAgentControlMode } from "../../../../src/talk/agent-run-control-shared.js";
 import type { TalkEvent } from "../../../../src/talk/talk-events.js";
 import type { GatewayBrowserClient, GatewayEventFrame } from "../../api/gateway.ts";
+import type { RealtimeTalkPcmOutputQueue } from "./realtime-talk-audio.ts";
 
 export type RealtimeTalkStatus = "idle" | "connecting" | "listening" | "thinking" | "error";
 export type RealtimeTalkEvent = TalkEvent;
+
+export type RealtimeTalkAudioLevel = {
+  source: "input" | "output";
+  rms: number;
+  peak: number;
+};
 
 export type RealtimeTalkCallbacks = {
   onStatus?: (status: RealtimeTalkStatus, detail?: string) => void;
   onTranscript?: (entry: { role: "user" | "assistant"; text: string; final: boolean }) => void;
   onTalkEvent?: (event: RealtimeTalkEvent) => void;
+  onAudioLevel?: (level: RealtimeTalkAudioLevel) => void;
+  /** Fired once, right after a transport creates its output AudioContext —
+   * lets a caller (e.g. the Alive page) attach spatial audio nodes. Chat
+   * page's realtime Talk doesn't set this, so its behavior is unchanged. */
+  onOutputContextReady?: (ctx: AudioContext) => void;
+  /** Fired once, right after a transport creates its PCM output queue —
+   * paired with onOutputContextReady so a caller can set
+   * queue.spatialDestination once both the queue and context exist. */
+  onOutputQueueReady?: (queue: RealtimeTalkPcmOutputQueue) => void;
 };
 
 type RealtimeTalkEventInput<TPayload = unknown> = {
@@ -99,6 +115,9 @@ export type RealtimeTalkSessionResult =
 export type RealtimeTalkTransport = {
   start(): Promise<void>;
   stop(): void;
+  /** Gates the outgoing mic track without ending the session. Optional — not
+   * every transport needs it, but every current one implements it. */
+  setMicMuted?(muted: boolean): void;
 };
 
 export type RealtimeTalkTransportContext = {

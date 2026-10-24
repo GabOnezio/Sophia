@@ -473,6 +473,10 @@ export const fa: TranslationMap = {
     settings: "تنظیمات",
     expand: "گسترش نوار کناری",
     collapse: "جمع کردن نوار کناری",
+    collapseFurther: "جمع کردن بیشتر نوار کناری",
+    expandFromHidden: "گسترش نوار کناری",
+    hideTopbar: "پنهان کردن نوار بالا",
+    showTopbar: "نمایش نوار بالا",
     resize: "تغییر اندازه نوار کناری",
     more: "بیشتر",
     customize: "سفارشی‌سازی نوار کناری",
@@ -523,6 +527,8 @@ export const fa: TranslationMap = {
     logs: "گزارش‌ها",
     dreams: "رؤیاپردازی",
     plugin: "افزونه",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "فضاهای کاری، ابزارها، هویت‌ها.",
@@ -551,6 +557,8 @@ export const fa: TranslationMap = {
     logs: "گزارش‌های زنده Gateway.",
     dreams: "رؤیاپردازی حافظه، یکپارچه‌سازی و بازتاب.",
     plugin: "پنل ارائه‌شده توسط افزونه.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "فعال",

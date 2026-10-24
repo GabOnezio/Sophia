@@ -212,7 +212,7 @@ function deleteAssistantAttachmentAvailability(cacheKey: string) {
   }
 }
 
-type ImageBlock = {
+export type ImageBlock = {
   url: string;
   openUrl?: string;
   alt?: string;
@@ -335,7 +335,7 @@ function extractTranscriptMediaEntries(message: unknown): Array<{
   }));
 }
 
-function extractImages(message: unknown): ImageBlock[] {
+export function extractImages(message: unknown): ImageBlock[] {
   const m = message as Record<string, unknown>;
   const content = m.content;
   const images: ImageBlock[] = [];
@@ -1371,7 +1371,7 @@ function isLocalAttachmentPreviewAllowed(
   });
 }
 
-function buildAssistantAttachmentUrl(
+export function buildAssistantAttachmentUrl(
   source: string,
   basePath?: string,
   mediaTicket?: string | null,

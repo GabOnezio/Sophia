@@ -17,6 +17,7 @@ import {
   validateTalkSessionSubmitToolResultParams,
   validateTalkSessionTurnParams,
 } from "../../../packages/gateway-protocol/src/index.js";
+import { getLogger } from "../../logging/logger.js";
 import { REALTIME_VOICE_AGENT_CONSULT_TOOL } from "../../talk/agent-consult-tool.js";
 import { REALTIME_VOICE_AGENT_CONTROL_TOOL } from "../../talk/agent-run-control-shared.js";
 import { controlRealtimeVoiceAgentRun } from "../../talk/agent-run-control.js";
@@ -322,6 +323,16 @@ export const talkSessionHandlers: GatewayRequestHandlers = {
           requested: params,
           defaults: realtimeConfig,
         });
+        getLogger().info(
+          {
+            requestedProvider: normalizeOptionalString(params.provider) ?? null,
+            configPrimaryProvider: realtimeConfig.provider ?? null,
+            configModel: realtimeConfig.model ?? null,
+            resolvedProvider: resolution.provider.id,
+            resolvedModel: launchOptions.model ?? null,
+          },
+          "[talk.session.create] resolved realtime voice provider",
+        );
         const session = createTalkRealtimeRelaySession({
           context,
           connId,

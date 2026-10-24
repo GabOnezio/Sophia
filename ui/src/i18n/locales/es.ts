@@ -473,6 +473,10 @@ export const es: TranslationMap = {
     settings: "Ajustes",
     expand: "Expandir barra lateral",
     collapse: "Contraer barra lateral",
+    collapseFurther: "Contraer aún más la barra lateral",
+    expandFromHidden: "Expandir barra lateral",
+    hideTopbar: "Ocultar la barra superior",
+    showTopbar: "Mostrar la barra superior",
     resize: "Redimensionar la barra lateral",
     more: "Más",
     customize: "Personalizar barra lateral",
@@ -523,6 +527,8 @@ export const es: TranslationMap = {
     logs: "Registros",
     dreams: "Sueños",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Gestionar espacios de trabajo, herramientas e identidades de agentes.",
@@ -552,6 +558,8 @@ export const es: TranslationMap = {
     logs: "Seguimiento en vivo de los registros de la puerta de enlace.",
     dreams: "Consolidación de la memoria durante el sueño.",
     plugin: "Panel proporcionado por el plugin.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Activas",

@@ -476,6 +476,10 @@ export const de: TranslationMap = {
     settings: "Einstellungen",
     expand: "Seitenleiste ausklappen",
     collapse: "Seitenleiste einklappen",
+    collapseFurther: "Seitenleiste weiter einklappen",
+    expandFromHidden: "Seitenleiste ausklappen",
+    hideTopbar: "Obere Leiste ausblenden",
+    showTopbar: "Obere Leiste einblenden",
     resize: "Seitenleiste in der Größe ändern",
     more: "Mehr",
     customize: "Seitenleiste anpassen",
@@ -526,6 +530,8 @@ export const de: TranslationMap = {
     logs: "Protokolle",
     dreams: "Träume",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Agent-Arbeitsbereiche, Tools und Identitäten verwalten.",
@@ -555,6 +561,8 @@ export const de: TranslationMap = {
     logs: "Live-Verfolgung der Gateway-Protokolldateien.",
     dreams: "Speicherkonsolidierung im Schlaf.",
     plugin: "Vom Plugin bereitgestelltes Panel.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Aktiv",

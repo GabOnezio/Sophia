@@ -26,6 +26,7 @@ export const SIDEBAR_NAV_ROUTES = [
   "skill-workshop",
   "nodes",
   "dreams",
+  "alive",
 ] as const satisfies readonly NavigationRouteId[];
 
 export type SidebarNavRoute = (typeof SIDEBAR_NAV_ROUTES)[number];
@@ -74,6 +75,7 @@ export const SETTINGS_NAVIGATION_ROUTES = [
   "ai-agents",
   "debug",
   "logs",
+  "live-config",
 ] as const satisfies readonly NavigationRouteId[];
 
 const NAVIGATION_ICONS: NavigationItem = {
@@ -103,6 +105,8 @@ const NAVIGATION_ICONS: NavigationItem = {
   logs: "scrollText",
   dreams: "moon",
   plugin: "puzzle",
+  alive: "orbit",
+  "live-config": "key",
 };
 
 export function isSettingsNavigationRoute(routeId: NavigationRouteId): boolean {
@@ -194,6 +198,8 @@ const NAVIGATION_COPY: Record<NavigationRouteId, { titleKey: string; subtitleKey
   logs: { titleKey: "tabs.logs", subtitleKey: "subtitles.logs" },
   dreams: { titleKey: "tabs.dreams", subtitleKey: "subtitles.dreams" },
   plugin: { titleKey: "tabs.plugin", subtitleKey: "subtitles.plugin" },
+  alive: { titleKey: "tabs.alive", subtitleKey: "subtitles.alive" },
+  "live-config": { titleKey: "tabs.liveConfig", subtitleKey: "subtitles.liveConfig" },
 };
 
 export function titleForRoute(routeId: NavigationRouteId): string {

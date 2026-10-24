@@ -1,0 +1,202 @@
+/* ===========================================
+   Alive ("Vivo") — voice-reactive 3D sphere
+   =========================================== */
+
+.alive-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(
+    circle at 50% 35%,
+    color-mix(in oklab, var(--accent) 6%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+openclaw-alive-scene {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.alive-scene__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.alive-page__controls {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  pointer-events: none;
+}
+
+.alive-page__controls > * {
+  pointer-events: auto;
+}
+
+.alive-page__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: color-mix(in oklab, var(--panel) 75%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--control-ui-text-sm);
+  backdrop-filter: blur(6px);
+}
+
+.alive-page__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.alive-page__status-dot--listening,
+.alive-page__status-dot--thinking {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.alive-page__status-dot--connecting {
+  background: var(--warn);
+}
+
+.alive-page__status-dot--error {
+  background: var(--destructive);
+}
+
+.alive-page__status-detail {
+  color: var(--muted);
+}
+
+.alive-page__pickers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  animation: alive-picker-reveal 220ms ease-out;
+}
+
+@keyframes alive-picker-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive-page__pickers {
+    animation: none;
+  }
+}
+
+.alive-page__picker-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.alive-page__picker-label {
+  font-size: var(--control-ui-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.alive-picker {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: color-mix(in oklab, var(--panel) 75%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+}
+
+.alive-picker--empty {
+  padding: 6px 12px;
+  color: var(--muted);
+  font-size: var(--control-ui-text-sm);
+}
+
+.alive-picker__btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: var(--control-ui-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 140ms ease,
+    background 140ms ease;
+}
+
+.alive-picker__btn:hover:not(:disabled) {
+  color: var(--text);
+}
+
+.alive-picker__btn--active {
+  color: var(--accent-foreground);
+  background: var(--accent);
+}
+
+.alive-picker__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.alive-page__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alive-page__talk-btn {
+  padding: 12px 32px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  font-family: inherit;
+  font-size: var(--control-ui-text-md);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition:
+    transform 140ms ease,
+    background 140ms ease;
+}
+
+.alive-page__talk-btn:hover {
+  transform: translateY(-1px);
+}
+
+.alive-page__talk-btn--active {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+  box-shadow: none;
+}

@@ -26,9 +26,11 @@ function createSettings(): UiSettings {
     chatAutoScroll: "near-bottom",
     splitRatio: 0.6,
     navCollapsed: false,
+    navHidden: false,
     navWidth: 280,
     sidebarPinnedRoutes: ["overview", "workboard", "agents"],
     sidebarMoreExpanded: false,
+    topbarHidden: false,
     borderRadius: 50,
   };
 }

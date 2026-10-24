@@ -32,8 +32,10 @@ export type ApplicationTheme = {
 
 export type ApplicationNavigationPreferencesSnapshot = {
   navCollapsed: boolean;
+  navHidden: boolean;
   sidebarPinnedRoutes: readonly SidebarNavRoute[];
   sidebarMoreExpanded: boolean;
+  topbarHidden: boolean;
 };
 
 export type ApplicationNavigationPreferences = {

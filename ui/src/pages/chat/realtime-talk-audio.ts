@@ -37,9 +37,33 @@ function pcm16ToFloat(bytes: Uint8Array): Float32Array {
   return samples;
 }
 
+/** RMS + peak (both 0..1) over a block of float PCM samples. */
+export function measurePcmLevel(samples: Float32Array): { rms: number; peak: number } {
+  let sumSquares = 0;
+  let peak = 0;
+  for (let i = 0; i < samples.length; i += 1) {
+    const value = samples[i] ?? 0;
+    sumSquares += value * value;
+    const magnitude = Math.abs(value);
+    if (magnitude > peak) {
+      peak = magnitude;
+    }
+  }
+  const rms = samples.length > 0 ? Math.sqrt(sumSquares / samples.length) : 0;
+  return { rms, peak };
+}
+
 export class RealtimeTalkPcmOutputQueue {
   private playhead = 0;
   private readonly sources = new Set<AudioBufferSourceNode>();
+
+  /** When set, playback connects here instead of straight to
+   * outputContext.destination — lets a caller (e.g. the Alive page) route
+   * output through a PannerNode for distance-based spatial audio. Left
+   * null, behavior is unchanged (Chat page never sets this). */
+  spatialDestination: AudioNode | null = null;
+
+  constructor(private readonly onLevel?: (rms: number, peak: number) => void) {}
 
   get queuedUntil(): number {
     return this.playhead;
@@ -57,13 +81,17 @@ export class RealtimeTalkPcmOutputQueue {
     if (samples.length === 0) {
       return;
     }
+    if (this.onLevel) {
+      const { rms, peak } = measurePcmLevel(samples);
+      this.onLevel(rms, peak);
+    }
     const buffer = outputContext.createBuffer(1, samples.length, outputSampleRateHz);
     buffer.getChannelData(0).set(samples);
     const source = outputContext.createBufferSource();
     this.sources.add(source);
     source.addEventListener("ended", () => this.sources.delete(source));
     source.buffer = buffer;
-    source.connect(outputContext.destination);
+    source.connect(this.spatialDestination ?? outputContext.destination);
     const startAt = Math.max(outputContext.currentTime, this.playhead);
     source.start(startAt);
     this.playhead = startAt + buffer.duration;

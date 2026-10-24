@@ -475,6 +475,10 @@ export const tr: TranslationMap = {
     settings: "Ayarlar",
     expand: "Kenar çubuğunu genişlet",
     collapse: "Kenar çubuğunu daralt",
+    collapseFurther: "Kenar çubuğunu daha fazla daralt",
+    expandFromHidden: "Kenar çubuğunu genişlet",
+    hideTopbar: "Üst çubuğu gizle",
+    showTopbar: "Üst çubuğu göster",
     resize: "Kenar çubuğunu yeniden boyutlandır",
     more: "Daha fazla",
     customize: "Kenar çubuğunu özelleştir",
@@ -525,6 +529,8 @@ export const tr: TranslationMap = {
     logs: "Günlükler",
     dreams: "Düşler",
     plugin: "Eklenti",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Çalışma alanları, araçlar, kimlikler.",
@@ -554,6 +560,8 @@ export const tr: TranslationMap = {
     logs: "Canlı Gateway günlükleri.",
     dreams: "Uyku sırasında bellek birleştirme.",
     plugin: "Eklenti tarafından sağlanan panel.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Etkin",

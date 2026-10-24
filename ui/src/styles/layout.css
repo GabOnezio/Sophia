@@ -42,6 +42,16 @@
   --shell-nav-width: var(--shell-nav-rail-width);
 }
 
+.shell--nav-hidden {
+  grid-template-columns: 0 minmax(0, 1fr);
+  --shell-nav-width: 0px;
+}
+
+.shell--topbar-hidden {
+  grid-template-rows: 0 1fr;
+  --shell-topbar-height: 0px;
+}
+
 .shell--onboarding {
   grid-template-columns: 0 minmax(0, 1fr);
   grid-template-rows: 0 1fr;
@@ -1549,6 +1559,84 @@
 
 .shell--nav-collapsed .sidebar {
   overflow: visible;
+}
+
+.shell--nav-hidden .shell-nav {
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.shell--topbar-hidden .topbar {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.shell-nav-handle,
+.shell-topbar-handle {
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full, 999px);
+  background: var(--bg-elevated, var(--bg));
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+.shell-nav-handle:hover,
+.shell-topbar-handle:hover {
+  background: color-mix(in srgb, var(--bg-hover) 84%, transparent);
+  color: var(--text);
+}
+
+.shell-nav-handle:focus-visible,
+.shell-topbar-handle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.shell-nav-handle svg,
+.shell-topbar-handle svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.shell-nav-handle {
+  grid-area: nav;
+  justify-self: end;
+  align-self: center;
+  transform: translateX(50%);
+}
+
+.shell-topbar-handle {
+  grid-area: topbar;
+  justify-self: center;
+  align-self: end;
+  transform: translateY(50%);
+}
+
+@media (max-width: 1100px) {
+  .shell-nav-handle,
+  .shell-topbar-handle {
+    display: none;
+  }
 }
 
 .nav-item__external-icon {

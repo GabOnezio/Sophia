@@ -28,6 +28,8 @@ const APP_ROUTE_DEFINITIONS = {
   nodes: { path: "/nodes" },
   plugin: { path: "/plugin" },
   dreams: { path: "/dreaming", aliases: ["/dreams"] },
+  alive: { path: "/alive" },
+  "live-config": { path: "/settings/live-configuration", aliases: ["/live-config"] },
 } as const;
 
 export type RouteId = keyof typeof APP_ROUTE_DEFINITIONS;

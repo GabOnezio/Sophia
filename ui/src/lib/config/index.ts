@@ -83,6 +83,11 @@ type LoadConfigOptions = {
 export type ConfigPatchOptions = {
   raw: string | Record<string, unknown>;
   note: string;
+  /** Config paths where this patch intentionally shrinks/replaces an array
+   * (e.g. removing a fallback entry) — without this, config.patch rejects
+   * any patch that would drop array entries, to guard against accidental
+   * data loss. See src/gateway/server-methods/config.ts. */
+  replacePaths?: string[];
 };
 
 type ConfigGatewayClient = {
@@ -513,6 +518,7 @@ async function patchConfig(
       raw: typeof options.raw === "string" ? options.raw : JSON.stringify(options.raw),
       sessionKey: state.applySessionKey,
       note: options.note,
+      ...(options.replacePaths?.length ? { replacePaths: options.replacePaths } : {}),
     });
     return true;
   } catch (err) {

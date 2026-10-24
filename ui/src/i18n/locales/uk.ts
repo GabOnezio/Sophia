@@ -473,6 +473,10 @@ export const uk: TranslationMap = {
     settings: "Налаштування",
     expand: "Розгорнути бічну панель",
     collapse: "Згорнути бічну панель",
+    collapseFurther: "Згорнути бічну панель повністю",
+    expandFromHidden: "Розгорнути бічну панель",
+    hideTopbar: "Приховати верхню панель",
+    showTopbar: "Показати верхню панель",
     resize: "Змінити розмір бічної панелі",
     more: "Більше",
     customize: "Налаштувати бічну панель",
@@ -523,6 +527,8 @@ export const uk: TranslationMap = {
     logs: "Журнали",
     dreams: "Сни",
     plugin: "Плагін",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Робочі простори, інструменти, ідентичності.",
@@ -552,6 +558,8 @@ export const uk: TranslationMap = {
     logs: "Журнали шлюзу в реальному часі.",
     dreams: "Консолідація пам’яті під час сну.",
     plugin: "Панель, надана плагіном.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Активні",

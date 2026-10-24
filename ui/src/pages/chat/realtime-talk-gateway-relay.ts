@@ -1,5 +1,10 @@
 // Control UI chat module implements realtime talk gateway relay behavior.
-import { bytesToBase64, floatToPcm16, RealtimeTalkPcmOutputQueue } from "./realtime-talk-audio.ts";
+import {
+  bytesToBase64,
+  floatToPcm16,
+  measurePcmLevel,
+  RealtimeTalkPcmOutputQueue,
+} from "./realtime-talk-audio.ts";
 import { openRealtimeTalkInput } from "./realtime-talk-input.ts";
 import {
   REALTIME_VOICE_AGENT_CONSULT_TOOL_NAME,
@@ -50,7 +55,7 @@ export class GatewayRelayRealtimeTalkTransport implements RealtimeTalkTransport 
   private inputProcessor: ScriptProcessorNode | null = null;
   private unsubscribe: (() => void) | null = null;
   private closed = false;
-  private readonly outputQueue = new RealtimeTalkPcmOutputQueue();
+  private readonly outputQueue: RealtimeTalkPcmOutputQueue;
   private readonly consultAbortControllers = new Map<string, AbortController>();
   private readonly completedToolCalls = new Set<string>();
   private cancelRequestedForPlayback = false;
@@ -60,7 +65,11 @@ export class GatewayRelayRealtimeTalkTransport implements RealtimeTalkTransport 
   constructor(
     private readonly session: RealtimeTalkGatewayRelaySessionResult,
     private readonly ctx: RealtimeTalkTransportContext,
-  ) {}
+  ) {
+    this.outputQueue = new RealtimeTalkPcmOutputQueue((rms, peak) =>
+      this.ctx.callbacks.onAudioLevel?.({ source: "output", rms, peak }),
+    );
+  }
 
   async start(): Promise<void> {
     if (!navigator.mediaDevices?.getUserMedia) {
@@ -86,6 +95,8 @@ export class GatewayRelayRealtimeTalkTransport implements RealtimeTalkTransport 
     });
     this.inputContext = new AudioContext({ sampleRate: this.session.audio.inputSampleRateHz });
     this.outputContext = new AudioContext({ sampleRate: this.session.audio.outputSampleRateHz });
+    this.ctx.callbacks.onOutputContextReady?.(this.outputContext);
+    this.ctx.callbacks.onOutputQueueReady?.(this.outputQueue);
     this.startMicrophonePump();
   }
 
@@ -119,6 +130,19 @@ export class GatewayRelayRealtimeTalkTransport implements RealtimeTalkTransport 
     this.outputContext = null;
   }
 
+  /** Disables/re-enables the outgoing mic track without tearing down the
+   * session — MediaStreamTrack.enabled=false silences the track for every
+   * consumer at once: the relayed audio the provider's VAD sees, and this
+   * transport's own local barge-in detector below (its onaudioprocess input
+   * samples go to zero too). Used by the Alive page to gate the mic while
+   * movement keys are held, so keyboard click noise can't trigger a false
+   * barge-in mid-reply. */
+  setMicMuted(muted: boolean): void {
+    this.media?.getAudioTracks().forEach((track) => {
+      track.enabled = !muted;
+    });
+  }
+
   private startMicrophonePump(): void {
     if (!this.media || !this.inputContext) {
       return;
@@ -131,7 +155,9 @@ export class GatewayRelayRealtimeTalkTransport implements RealtimeTalkTransport 
       }
       const samples = event.inputBuffer.getChannelData(0);
       const pcm = floatToPcm16(samples);
-      if (this.detectBargeInSpeech(samples)) {
+      const { rms, peak } = measurePcmLevel(samples);
+      this.ctx.callbacks.onAudioLevel?.({ source: "input", rms, peak });
+      if (this.detectBargeInSpeech(rms, peak)) {
         this.cancelOutputForBargeIn();
       }
       void this.ctx.client
@@ -338,20 +364,12 @@ export class GatewayRelayRealtimeTalkTransport implements RealtimeTalkTransport 
     this.consultAbortControllers.clear();
   }
 
-  private detectBargeInSpeech(samples: Float32Array): boolean {
-    if (!this.outputQueue.isPlaying || this.cancelRequestedForPlayback || samples.length === 0) {
+  private detectBargeInSpeech(rms: number, peak: number): boolean {
+    if (!this.outputQueue.isPlaying || this.cancelRequestedForPlayback) {
       this.speechFramesDuringPlayback = 0;
       return false;
     }
 
-    let sumSquares = 0;
-    let peak = 0;
-    for (const sample of samples) {
-      const abs = Math.abs(sample);
-      peak = Math.max(peak, abs);
-      sumSquares += sample * sample;
-    }
-    const rms = Math.sqrt(sumSquares / samples.length);
     if (rms >= BARGE_IN_RMS_THRESHOLD && peak >= BARGE_IN_PEAK_THRESHOLD) {
       this.speechFramesDuringPlayback += 1;
     } else {

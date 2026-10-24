@@ -478,6 +478,10 @@ export const ja_JP: TranslationMap = {
     settings: "設定",
     expand: "サイドバーを展開",
     collapse: "サイドバーを折りたたむ",
+    collapseFurther: "サイドバーをさらに折りたたむ",
+    expandFromHidden: "サイドバーを展開",
+    hideTopbar: "上部バーを非表示",
+    showTopbar: "上部バーを表示",
     resize: "サイドバーのサイズを変更",
     more: "その他",
     customize: "サイドバーをカスタマイズ",
@@ -528,6 +532,8 @@ export const ja_JP: TranslationMap = {
     logs: "ログ",
     dreams: "Dreaming",
     plugin: "プラグイン",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "ワークスペース、ツール、ID。",
@@ -556,6 +562,8 @@ export const ja_JP: TranslationMap = {
     logs: "ライブ Gateway ログ。",
     dreams: "スリープ中のメモリ統合。",
     plugin: "プラグインが提供するパネル。",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "アクティブ",

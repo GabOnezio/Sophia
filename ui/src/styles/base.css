@@ -492,6 +492,136 @@
   --grid-line: rgba(80, 50, 20, 0.04);
 }
 
+:root[data-theme="sophia"] {
+  /*
+   * Accent — verde limão on green-black
+   *
+   * WCAG 2.1 AA audit (bg = #070907, relative luminance ≈ 0.004):
+   *   --accent #a3e635  L ≈ 0.71  contrast ≈ 16.4:1  AAA text ✓
+   *   --primary-foreground #0a2005 on #a3e635 button: 13.8:1 AAA ✓
+   *   focus-ring at 80% opacity: well above 3:1 non-text minimum ✓
+   */
+  --ring: #a3e635;
+  --accent: #a3e635;
+  --accent-hover: #bef264;
+  --accent-muted: #a3e635;
+  --accent-subtle: rgba(163, 230, 53, 0.14);
+  --accent-glow: rgba(163, 230, 53, 0.28);
+  --primary: #a3e635;
+  --primary-foreground: #0a2005;
+
+  /* Focus — lime ring, boosted glow for the near-black surfaces */
+  --focus: rgba(163, 230, 53, 0.2);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--ring) 80%, transparent);
+  --focus-glow: 0 0 0 2px var(--bg), 0 0 0 3px var(--ring), 0 0 16px var(--accent-glow);
+
+  /* Surfaces — green-black, alive */
+  --bg: #070907;
+  --bg-accent: #0c120c;
+  --bg-elevated: #111a11;
+  --bg-hover: #17241a;
+  --bg-muted: #17241a;
+  --bg-gradient: linear-gradient(180deg, #0d1f0d 0%, #070907 55%, #000000 100%);
+
+  --card: #0e150e;
+  --card-foreground: #e8f5e1;
+  --card-highlight: rgba(190, 255, 140, 0.04);
+  --popover: #111a11;
+  --popover-foreground: #e8f5e1;
+
+  --panel: #070907;
+  --panel-strong: #111a11;
+  --panel-hover: #17241a;
+  --chrome: rgba(7, 9, 7, 0.96);
+  --chrome-strong: rgba(7, 9, 7, 0.98);
+
+  --text: #cfe6c4;
+  --text-strong: #f1fbe8;
+  --chat-text: #cfe6c4;
+  --muted: #86a17c;
+  --muted-strong: #9ab88f;
+  --muted-foreground: #86a17c;
+
+  --border: #17281a;
+  --border-strong: #223c25;
+  --border-hover: #335236;
+  --input: #17281a;
+
+  --secondary: #0e150e;
+  --secondary-foreground: #e8f5e1;
+  --accent-2: #34d399;
+  --accent-2-muted: rgba(52, 211, 153, 0.7);
+  --accent-2-subtle: rgba(52, 211, 153, 0.12);
+
+  --shadow-sm: 0 1px 2px rgba(0, 5, 0, 0.35);
+  --shadow-md: 0 4px 16px rgba(0, 5, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 5, 0, 0.55);
+
+  --grid-line: rgba(163, 230, 53, 0.06);
+}
+
+:root[data-theme="sophia-light"] {
+  /*
+   * Accent — deep olive on ivory-mint
+   *
+   * WCAG 2.1 AA audit (bg = #f8faf4, relative luminance ≈ 0.93):
+   *   --accent #4d7c0f  L ≈ 0.16  contrast ≈ 6.3:1  AA text ✓
+   *   --primary-foreground #ffffff on #4d7c0f button: 5.1:1 AA ✓
+   */
+  --ring: #4d7c0f;
+  --accent: #4d7c0f;
+  --accent-hover: #3f6212;
+  --accent-muted: #4d7c0f;
+  --accent-subtle: rgba(77, 124, 15, 0.1);
+  --accent-glow: rgba(77, 124, 15, 0.16);
+  --primary: #4d7c0f;
+  --primary-foreground: #ffffff;
+
+  /* Surfaces — ivory-mint tones */
+  --bg: #f8faf4;
+  --bg-accent: #f0f5e8;
+  --bg-elevated: #ffffff;
+  --bg-hover: #e6eeda;
+  --bg-muted: #e6eeda;
+  --bg-gradient: linear-gradient(180deg, #eef7e4 0%, #f8faf4 55%, #ffffff 100%);
+
+  --card: #ffffff;
+  --card-foreground: #1c2a17;
+  --card-highlight: rgba(30, 60, 10, 0.03);
+  --popover: #ffffff;
+  --popover-foreground: #1c2a17;
+
+  --panel: #f8faf4;
+  --panel-strong: #f0f5e8;
+  --panel-hover: #e6eeda;
+  --chrome: rgba(248, 250, 244, 0.96);
+  --chrome-strong: rgba(248, 250, 244, 0.98);
+
+  --text: #33421f;
+  --text-strong: #1c2a17;
+  --chat-text: #33421f;
+  --muted: #5c6b4a;
+  --muted-strong: #48563a;
+  --muted-foreground: #5c6b4a;
+
+  --border: #e1e8d3;
+  --border-strong: #cdd9b8;
+  --border-hover: #b0c090;
+  --input: #e1e8d3;
+
+  --secondary: #f0f5e8;
+  --secondary-foreground: #33421f;
+  --accent-2: #0f766e;
+  --accent-2-muted: rgba(15, 118, 110, 0.75);
+  --accent-2-subtle: rgba(15, 118, 110, 0.08);
+
+  --shadow-sm: 0 1px 2px rgba(30, 50, 10, 0.06);
+  --shadow-md: 0 4px 12px rgba(30, 50, 10, 0.08);
+  --shadow-lg: 0 12px 28px rgba(30, 50, 10, 0.1);
+
+  --grid-line: rgba(51, 66, 31, 0.05);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -513,6 +643,13 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sophia theme: green-to-black gradient behind the particle field, instead of
+   the flat --bg every other theme uses. */
+:root[data-theme="sophia"] body,
+:root[data-theme="sophia-light"] body {
+  background: var(--bg-gradient);
 }
 
 @media (min-width: 1600px) {

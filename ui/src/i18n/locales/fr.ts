@@ -477,6 +477,10 @@ export const fr: TranslationMap = {
     settings: "Paramètres",
     expand: "Développer la barre latérale",
     collapse: "Réduire la barre latérale",
+    collapseFurther: "Réduire davantage la barre latérale",
+    expandFromHidden: "Développer la barre latérale",
+    hideTopbar: "Masquer la barre supérieure",
+    showTopbar: "Afficher la barre supérieure",
     resize: "Redimensionner la barre latérale",
     more: "Plus",
     customize: "Personnaliser la barre latérale",
@@ -527,6 +531,8 @@ export const fr: TranslationMap = {
     logs: "Journaux",
     dreams: "Rêves",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Espaces de travail, outils, identités.",
@@ -556,6 +562,8 @@ export const fr: TranslationMap = {
     logs: "Journaux Gateway en direct.",
     dreams: "Consolidation de la mémoire pendant le sommeil.",
     plugin: "Panneau fourni par le plugin.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Actives",

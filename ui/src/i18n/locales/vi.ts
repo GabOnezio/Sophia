@@ -472,6 +472,10 @@ export const vi: TranslationMap = {
     settings: "Cài đặt",
     expand: "Mở rộng thanh bên",
     collapse: "Thu gọn thanh bên",
+    collapseFurther: "Thu gọn thanh bên hơn nữa",
+    expandFromHidden: "Mở rộng thanh bên",
+    hideTopbar: "Ẩn thanh trên cùng",
+    showTopbar: "Hiện thanh trên cùng",
     resize: "Thay đổi kích thước thanh bên",
     more: "Thêm",
     customize: "Tùy chỉnh thanh bên",
@@ -522,6 +526,8 @@ export const vi: TranslationMap = {
     logs: "Nhật ký",
     dreams: "Đang mơ",
     plugin: "Plugin",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "Không gian làm việc, công cụ, danh tính.",
@@ -551,6 +557,8 @@ export const vi: TranslationMap = {
     logs: "Nhật ký gateway trực tiếp.",
     dreams: "Mơ bộ nhớ, hợp nhất và phản chiếu.",
     plugin: "Bảng điều khiển do plugin cung cấp.",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "Đang hoạt động",

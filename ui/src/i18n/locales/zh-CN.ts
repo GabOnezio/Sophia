@@ -469,6 +469,10 @@ export const zh_CN: TranslationMap = {
     settings: "设置",
     expand: "展开侧边栏",
     collapse: "折叠侧边栏",
+    collapseFurther: "进一步折叠侧边栏",
+    expandFromHidden: "展开侧边栏",
+    hideTopbar: "隐藏顶部栏",
+    showTopbar: "显示顶部栏",
     resize: "调整侧边栏大小",
     more: "更多",
     customize: "自定义侧边栏",
@@ -519,6 +523,8 @@ export const zh_CN: TranslationMap = {
     logs: "日志",
     dreams: "梦境",
     plugin: "插件",
+    alive: "Alive",
+    liveConfig: "Live Configuration",
   },
   subtitles: {
     agents: "工作区、工具、身份。",
@@ -547,6 +553,8 @@ export const zh_CN: TranslationMap = {
     logs: "实时网关日志。",
     dreams: "睡眠时进行记忆巩固。",
     plugin: "插件提供的面板。",
+    alive: "Talk to her live — voice, presence, and a living sphere.",
+    liveConfig: "API keys, default voice, and the AI's persona.",
   },
   tasksPage: {
     active: "活跃",

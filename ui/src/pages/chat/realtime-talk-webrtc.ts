@@ -197,6 +197,17 @@ export class WebRtcSdpRealtimeTalkTransport implements RealtimeTalkTransport {
     this.responseCreatePending = false;
   }
 
+  /** Disables/re-enables the outgoing mic track without tearing down the
+   * session — MediaStreamTrack.enabled=false sends silence, which the
+   * provider's own VAD/interruption detection won't mistake for speech.
+   * Used by the Alive page to gate the mic while movement keys are held, so
+   * keyboard click noise can't trigger a false barge-in mid-reply. */
+  setMicMuted(muted: boolean): void {
+    this.media?.getAudioTracks().forEach((track) => {
+      track.enabled = !muted;
+    });
+  }
+
   private send(event: unknown): void {
     if (this.channel?.readyState === "open") {
       this.channel.send(JSON.stringify(event));

@@ -1,5 +1,5 @@
 // Control UI module implements theme behavior.
-export type ThemeName = "claw" | "knot" | "dash" | "custom";
+export type ThemeName = "claw" | "knot" | "dash" | "sophia" | "custom";
 export type ThemeMode = "system" | "light" | "dark";
 export type ResolvedTheme =
   | "dark"
@@ -8,10 +8,12 @@ export type ResolvedTheme =
   | "openknot-light"
   | "dash"
   | "dash-light"
+  | "sophia"
+  | "sophia-light"
   | "custom"
   | "custom-light";
 
-const VALID_THEME_NAMES = new Set<ThemeName>(["claw", "knot", "dash", "custom"]);
+const VALID_THEME_NAMES = new Set<ThemeName>(["claw", "knot", "dash", "sophia", "custom"]);
 const VALID_THEME_MODES = new Set<ThemeMode>(["system", "light", "dark"]);
 
 type ThemeSelection = { theme: ThemeName; mode: ThemeMode };
@@ -46,7 +48,7 @@ export function parseThemeSelection(
 
   const normalizedTheme = VALID_THEME_NAMES.has(theme as ThemeName)
     ? (theme as ThemeName)
-    : (LEGACY_MAP[theme]?.theme ?? "claw");
+    : (LEGACY_MAP[theme]?.theme ?? "sophia");
   const normalizedMode = VALID_THEME_MODES.has(mode as ThemeMode)
     ? (mode as ThemeMode)
     : (LEGACY_MAP[theme]?.mode ?? "system");
@@ -71,6 +73,9 @@ export function resolveTheme(theme: ThemeName, mode: ThemeMode): ResolvedTheme {
   }
   if (theme === "dash") {
     return resolvedMode === "light" ? "dash-light" : "dash";
+  }
+  if (theme === "sophia") {
+    return resolvedMode === "light" ? "sophia-light" : "sophia";
   }
   return resolvedMode === "light" ? "custom-light" : "custom";
 }

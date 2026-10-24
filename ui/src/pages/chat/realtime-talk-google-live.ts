@@ -3,6 +3,7 @@ import {
   base64ToBytes,
   bytesToBase64,
   floatToPcm16,
+  measurePcmLevel,
   RealtimeTalkPcmOutputQueue,
 } from "./realtime-talk-audio.ts";
 import { openRealtimeTalkInput } from "./realtime-talk-input.ts";
@@ -86,7 +87,7 @@ export class GoogleLiveRealtimeTalkTransport implements RealtimeTalkTransport {
   private closed = false;
   private pendingCalls = new Map<string, PendingFunctionCall>();
   private readonly consultAbortControllers = new Set<AbortController>();
-  private readonly outputQueue = new RealtimeTalkPcmOutputQueue();
+  private readonly outputQueue: RealtimeTalkPcmOutputQueue;
   private readonly emitTalkEvent: ReturnType<typeof createRealtimeTalkEventEmitter>;
 
   constructor(
@@ -94,6 +95,9 @@ export class GoogleLiveRealtimeTalkTransport implements RealtimeTalkTransport {
     private readonly ctx: RealtimeTalkTransportContext,
   ) {
     this.emitTalkEvent = createRealtimeTalkEventEmitter(ctx, session);
+    this.outputQueue = new RealtimeTalkPcmOutputQueue((rms, peak) =>
+      this.ctx.callbacks.onAudioLevel?.({ source: "output", rms, peak }),
+    );
   }
 
   async start(): Promise<void> {
@@ -108,6 +112,8 @@ export class GoogleLiveRealtimeTalkTransport implements RealtimeTalkTransport {
     this.media = await openRealtimeTalkInput(this.ctx.inputDeviceId);
     this.inputContext = new AudioContext({ sampleRate: this.session.audio.inputSampleRateHz });
     this.outputContext = new AudioContext({ sampleRate: this.session.audio.outputSampleRateHz });
+    this.ctx.callbacks.onOutputContextReady?.(this.outputContext);
+    this.ctx.callbacks.onOutputQueueReady?.(this.outputQueue);
     this.ws = new WebSocket(wsUrl);
     this.ws.binaryType = "arraybuffer";
     this.ws.addEventListener("open", () => {
@@ -120,9 +126,16 @@ export class GoogleLiveRealtimeTalkTransport implements RealtimeTalkTransport {
     this.ws.addEventListener("message", (event) => {
       void this.handleMessage(event.data);
     });
-    this.ws.addEventListener("close", () => {
+    this.ws.addEventListener("close", (event) => {
       if (!this.closed) {
-        this.ctx.callbacks.onStatus?.("error", "Realtime connection closed");
+        // Surface the raw WebSocket close code/reason — Google Live closes
+        // with a specific code for auth/quota/protocol issues, and without
+        // it every failure looks identical ("connection closed") no matter
+        // the actual cause.
+        const detail = event.reason?.trim()
+          ? `Realtime connection closed (${event.code}): ${event.reason}`
+          : `Realtime connection closed (code ${event.code})`;
+        this.ctx.callbacks.onStatus?.("error", detail);
       }
     });
     this.ws.addEventListener("error", () => {
@@ -157,6 +170,17 @@ export class GoogleLiveRealtimeTalkTransport implements RealtimeTalkTransport {
     this.ws = null;
   }
 
+  /** Disables/re-enables the outgoing mic track without tearing down the
+   * session — MediaStreamTrack.enabled=false sends silence, which the
+   * provider's own VAD/interruption detection won't mistake for speech.
+   * Used by the Alive page to gate the mic while movement keys are held, so
+   * keyboard click noise can't trigger a false barge-in mid-reply. */
+  setMicMuted(muted: boolean): void {
+    this.media?.getAudioTracks().forEach((track) => {
+      track.enabled = !muted;
+    });
+  }
+
   private startMicrophonePump(): void {
     if (this.closed || !this.media || !this.inputContext) {
       return;
@@ -167,7 +191,10 @@ export class GoogleLiveRealtimeTalkTransport implements RealtimeTalkTransport {
       if (this.ws?.readyState !== WebSocket.OPEN) {
         return;
       }
-      const pcm = floatToPcm16(event.inputBuffer.getChannelData(0));
+      const inputSamples = event.inputBuffer.getChannelData(0);
+      const pcm = floatToPcm16(inputSamples);
+      const { rms, peak } = measurePcmLevel(inputSamples);
+      this.ctx.callbacks.onAudioLevel?.({ source: "input", rms, peak });
       this.send({
         realtimeInput: {
           audio: {

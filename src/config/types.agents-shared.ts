@@ -6,6 +6,11 @@ import type {
   SandboxSshSettings,
 } from "./types.sandbox.js";
 
+/** Per-candidate ("provider" or "provider/model") star rating, 0-10. Purely
+ * a UI-facing priority signal — used by Control UI's "Configuração Viva" to
+ * decide fallback try-order; not read by the agent runtime itself. */
+export type ModelCandidateRatings = Record<string, number>;
+
 /** Agent model selector: a single provider/model ref or primary+fallback chain. */
 export type AgentModelConfig =
   | string
@@ -14,6 +19,8 @@ export type AgentModelConfig =
       primary?: string;
       /** Per-agent model fallbacks (provider/model). */
       fallbacks?: string[];
+      /** Optional star ratings (0-10) per candidate, driving fallback order. */
+      ratings?: ModelCandidateRatings;
     };
 
 /** Tool-specific model selector with an optional capability timeout override. */
@@ -26,6 +33,14 @@ export type AgentToolModelConfig =
       fallbacks?: string[];
       /** Optional provider request timeout in milliseconds for capabilities that support it. */
       timeoutMs?: number;
+      /** Optional star ratings (0-10) per candidate, driving fallback order. */
+      ratings?: ModelCandidateRatings;
+      /** For agents.defaults.voiceModel: whether a billing/credit failure on the
+       * current realtime Talk provider should automatically retry the next
+       * candidate in `fallbacks[]` (star order). Defaults to true when unset.
+       * Ignored for the other AgentToolModelConfig fields (image/video/music
+       * generation already retry across fallbacks per tool call). */
+      autoFailover?: boolean;
     };
 
 /** Runtime selection policy attached to providers, models, and agent defaults. */
